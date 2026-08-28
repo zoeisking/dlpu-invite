@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>大连工业大学艺术与信息学院 · 新生报到邀请函</title>
+<meta name="description" content="以校园一日游为线索，带你走遍校门、图书馆与艺术展厅，感受青春与创新，开启你的大学之旅。">
+<style>
+  :root{
+    --navy:#1F4E9C;      /* 大连工业大学校色蓝 */
+    --navy-deep:#123a7d;
+    --ink:#24324d;
+    --ink-soft:#5c6a85;
+    --cream:#fdf9f2;     /* 暖米白 */
+    --paper:#fffdf8;
+    --accent:#f4a25c;    /* 暖橙 */
+    --accent-2:#e4573d;  /* 活力红橙 */
+    --gold:#f2c469;
+    --leaf:#7fa95c;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{
+    font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+    background:#eef2f8;
+    color:var(--ink);
+    overflow-x:hidden;
+  }
+  /* ---------- 舞台容器 ---------- */
+  .stage{
+    max-width:480px;
+    margin:0 auto;
+    min-height:100vh;
+    background:var(--cream);
+    box-shadow:0 0 40px rgba(18,58,125,.12);
+    position:relative;
+  }
+
+  /* ---------- 全屏场景 ---------- */
+  .scene{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+    padding:56px 26px 64px;
+  }
+  .scene .bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0;}
+  .scene .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,40,85,.30),rgba(18,40,85,.10) 40%,rgba(18,40,85,.78));z-index:1;}
+  .scene > .inner{position:relative;z-index:2;width:100%;}
+
+  /* 封面 */
+  .cover-title{
+    font-size:30px;line-height:1.35;font-weight:800;color:#fff;
+    text-shadow:0 2px 12px rgba(10,25,55,.45);
+    letter-spacing:2px;
+  }
+  .cover-sub{
+    margin-top:10px;font-size:14px;letter-spacing:6px;color:rgba(255,255,255,.92);
+  }
+  .school-name{
+    display:inline-block;margin-top:26px;padding:9px 20px;border:1px solid rgba(255,255,255,.55);
+    border-radius:999px;font-size:13px;letter-spacing:3px;color:#fff;background:rgba(255,255,255,.12);
+    backdrop-filter:blur(4px);
+  }
+  .scroll-hint{
+    position:absolute;left:50%;bottom:34px;transform:translateX(-50%);z-index:3;
+    color:#fff;font-size:12px;letter-spacing:3px;opacity:.9;
+  }
+  .scroll-hint .dot{
+    width:22px;height:34px;margin:10px auto 0;border:2px solid #fff;border-radius:12px;position:relative;
+  }
+  .scroll-hint .dot::after{
+    content:"";position:absolute;left:50%;top:7px;width:4px;height:8px;margin-left:-2px;
+    border-radius:3px;background:#fff;animation:scroll 1.6s infinite;
+  }
+  @keyframes scroll{0%{transform:translateY(0);opacity:1}70%{transform:translateY(12px);opacity:0}100%{opacity:0}}
+
+  /* 站牌标签 */
+  .stop-badge{
+    display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:999px;
+    background:#fff;box-shadow:0 6px 20px rgba(18,58,125,.14);font-size:12px;font-weight:700;letter-spacing:2px;
+  }
+  .stop-badge .ico{color:var(--accent-2);}
+
+  /* 文字卡片 */
+  .card{
+    background:var(--paper);border-radius:18px;padding:24px 22px;margin-top:18px;
+    box-shadow:0 10px 30px rgba(18,58,125,.10);text-align:left;
+  }
+  .card h3{font-size:21px;font-weight:800;color:var(--navy);letter-spacing:1px;}
+  .card h3::after{content:"";display:block;width:34px;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--accent-2),var(--gold));margin:10px 0 12px;}
+  .card p{font-size:14.5px;line-height:1.85;color:var(--ink-soft);}
+  .card p strong{color:var(--navy);}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+  .tags span{font-size:12px;color:var(--navy);background:#eef3fb;border:1px solid #dbe6f5;border-radius:999px;padding:5px 12px;}
+
+  /* 光栅 + 动画入场 */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.on{opacity:1;transform:none;}
+  .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+  /* 邀请卡 */
+  .invite-card{
+    background:linear-gradient(160deg,#fff, #fff7ea);border:1px solid #f0e3cc;border-radius:20px;
+    padding:26px 24px;box-shadow:0 12px 34px rgba(18,58,125,.12);
+  }
+  .invite-card .seal{
+    width:52px;height:52px;margin:0 auto 12px;border-radius:50%;
+    background:radial-gradient(circle at 32% 30%,#f9c06c,var(--accent-2));
+    display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;
+    box-shadow:0 6px 16px rgba(228,87,61,.35);
+  }
+  .invite-card h3{font-size:22px;font-weight:800;color:var(--navy);text-align:center;letter-spacing:2px;}
+  .invite-card .divider{height:1px;background:linear-gradient(90deg,transparent,#e7d8b8,transparent);margin:16px 0;}
+  .invite-card .line{font-size:14.5px;line-height:2;color:var(--ink-soft);}
+  .invite-card .line b{color:var(--accent-2);font-weight:700;}
+  .invite-card .addr{margin-top:14px;padding-top:14px;border-top:1px dashed #e7d8b8;font-size:13px;color:var(--ink-soft);}
+
+  /* 报名 */
+  .btn{
+    display:inline-block;margin-top:22px;padding:15px 52px;border-radius:999px;
+    background:linear-gradient(135deg,var(--accent-2),var(--navy-deep));
+    color:#fff;font-size:16px;font-weight:700;letter-spacing:4px;text-decoration:none;
+    box-shadow:0 10px 24px rgba(18,58,125,.28);position:relative;overflow:hidden;
+    transition:transform .2s;
+  }
+  .btn:active{transform:scale(.96);}
+  .qrcode{
+    width:130px;height:130px;margin:22px auto 0;border-radius:12px;background:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:11px;color:#aeb6c4;
+    border:1px dashed #cfd8e5;
+  }
+
+  /* 结尾 slogan */
+  .slogan{font-size:20px;font-weight:800;color:var(--navy);letter-spacing:3px;margin-top:6px;}
+  .team{font-size:12px;color:var(--ink-soft);letter-spacing:1px;margin-top:22px;line-height:1.9;}
+
+  /* 彩蛋粒子画布 */
+  #fx{position:fixed;inset:0;pointer-events:none;z-index:60;}
+
+  /* 侧边进度点 */
+  .dots{position:fixed;right:max(8px, calc(50% - 238px));top:50%;transform:translateY(-50%);z-index:20;display:flex;flex-direction:column;gap:9px;}
+  .dots i{width:7px;height:7px;border-radius:50%;background:#c4cfdf;transition:.3s;}
+  .dots i.on{background:var(--accent-2);height:18px;border-radius:5px;}
+
+  /* 顶部学校小标 */
+  .topbar{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:25;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;}
+  .topbar .t1{font-size:12px;letter-spacing:1px;color:rgba(255,255,255,.95);text-shadow:0 1px 6px rgba(10,25,55,.4);}
+  .topbar .t2{font-size:11px;color:rgba(255,255,255,.8);text-shadow:0 1px 6px rgba(10,25,55,.4);}
+</style>
+</head>
+<body>
+<canvas id="fx"></canvas>
+
+<div class="stage">
+
+  <!-- 顶部小标 -->
+  <div class="topbar">
+    <span class="t1">大连工业大学 · 艺术与信息学院</span>
+    <span class="t2">DLPU · 2026</span>
+  </div>
+
+  <!-- ============ 封面 · 校门 ============ -->
+  <section class="scene" id="s1">
+    <div class="bg" style="background-image:url('images/campus.jpg')"></div>
+    <div class="shade"></div>
+    <div class="inner">
+      <div class="reveal on cover-sub">NEW STUDENT WELCOME</div>
+      <div class="reveal on cover-title" style="margin-top:8px">一 封 邀 请 函<br>开 启 你 的 大 学</div>
+      <div class="reveal on school-name" style="transition-delay:.15s">大连工业大学艺术与信息学院</div>
+    </div>
+    <div class="scroll-hint reveal on" style="transition-delay:.3s">向上滑动 · 开启校园之旅<span class="dot"></span></div>
+  </section>
+
+  <!-- ============ 第一站 · 校园 ============ -->
+  <section class="scene" id="s2">
+    <div class="bg" style="background-image:url('images/campus.jpg')"></div>
+    <div class="shade" style="background:linear-gradient(180deg,rgba(18,40,85,.20),rgba(18,40,85,.15) 45%,rgba(18,40,85,.82))"></div>
+    <div class="inner">
+      <div class="stop-badge reveal"><span class="ico">✧</span> 第一站 · 校园印象</div>
+      <div class="card reveal d1">
+        <h3>从这里，遇见更好的自己</h3>
+        <p>大连工业大学是辽宁省属重点建设高校。<strong>艺术与信息学院</strong>立足「艺术 × 信息」融合，让创意与科技在这里碰撞出火花。</p>
+        <div class="tags"><span>厚德载物</span><span>崇学尚实</span><span>艺科融合</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 第二站 · 图书馆 ============ -->
+  <section class="scene" id="s3">
+    <div class="bg" style="background-image:url('images/library.jpg')"></div>
+    <div class="shade" style="background:linear-gradient(180deg,rgba(18,40,85,.20),rgba(18,40,85,.15) 45%,rgba(18,40,85,.82))"></div>
+    <div class="inner">
+      <div class="stop-badge reveal"><span class="ico">✧</span> 第二站 · 图书馆</div>
+      <div class="card reveal d1">
+        <h3>在书海与灵感里漫步</h3>
+        <p>窗明几净的图书馆，藏着无数等待探索的答案。翻开一本书，也许就打开了一扇通往未来的窗——<strong>勤学、笃行</strong>，是这里最常见的风景。</p>
+        <div class="tags"><span>藏书百万册</span><span>24小时自习区</span><span>学习氛围浓厚</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 第三站 · 艺术展厅 ============ -->
+  <section class="scene" id="s4">
+    <div class="bg" style="background-image:url('images/gallery.jpg')"></div>
+    <div class="shade" style="background:linear-gradient(180deg,rgba(18,40,85,.20),rgba(18,40,85,.15) 45%,rgba(18,40,85,.82))"></div>
+    <div class="inner">
+      <div class="stop-badge reveal"><span class="ico">✧</span> 第三站 · 艺术展厅</div>
+      <div class="card reveal d1">
+        <h3>让想象力有处安放</h3>
+        <p>画展、设计展、数字媒体工坊……艺术与信息学院把课堂搬进展厅。这里鼓励每一次尝试，<strong>让创意被看见</strong>，也让技术拥有温度。</p>
+        <div class="tags"><span>数字媒体艺术</span><span>视觉传达</span><span>作品展映</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 第四站 · 四季校园 ============ -->
+  <section class="scene" id="s5">
+    <div class="bg" style="background-image:url('images/path.jpg')"></div>
+    <div class="shade" style="background:linear-gradient(180deg,rgba(18,40,85,.20),rgba(18,40,85,.15) 45%,rgba(18,40,85,.82))"></div>
+    <div class="inner">
+      <div class="stop-badge reveal"><span class="ico">✧</span> 第四站 · 四季校园</div>
+      <div class="card reveal d1">
+        <h3>春华秋实，等你来添一笔</h3>
+        <p>春天的花、夏天的树、秋天的落叶、冬天的雪。四季更迭的校园里，社团、晚会、运动会从不缺席，<strong>总有一个舞台属于你</strong>。</p>
+        <div class="tags"><span>多彩社团</span><span>迎新晚会</span><span>青春与活力</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 邀请信息 ============ -->
+  <section class="scene" id="s6" style="background:linear-gradient(170deg,#eef3fb,#f7ecdd);">
+    <div class="inner">
+      <div class="stop-badge reveal"><span class="ico">✉</span> 诚 挚 邀 请</div>
+      <div class="invite-card reveal d1">
+        <div class="seal">✦</div>
+        <h3>新生报到邀请函</h3>
+        <div class="divider"></div>
+        <div class="line">亲爱的新同学，恭喜你踏上人生新旅程！<br>我们诚挚邀请你参加<br><b>大连工业大学艺术与信息学院 · 2026 新生报到</b></div>
+        <div class="line" style="margin-top:6px">▸ 报到时间：<b>2026 年 9 月 1 日</b><br>▸ 报到地点：<b>大连工业大学 综合楼广场</b></div>
+        <div class="addr">温馨提示：报到当天请携带录取通知书、身份证件；如有疑问，欢迎在公众号后台留言，学长学姐将第一时间为你解答。</div>
+      </div>
+      <a class="btn reveal d2" href="javascript:void(0)" onclick="celebrate()">☺ 我已收到 · 期待相遇</a>
+    </div>
+  </section>
+
+  <!-- ============ 结尾 ============ -->
+  <section class="scene" id="s7" style="background:linear-gradient(180deg,#123a7d,#1F4E9C 60%,#2c6bb5);">
+    <div class="inner">
+      <div class="reveal on" style="font-size:13px;letter-spacing:6px;color:#ffe9c9">WELCOME TO DLPU</div>
+      <div class="slogan reveal d1" style="color:#fff;margin-top:14px">艺 术 · 信 息 · 未 来</div>
+      <div class="reveal d2" style="color:rgba(255,255,255,.85);font-size:14px;line-height:1.9;margin-top:16px">
+        这个九月，我们在校园的每一处风景里<br>等你来书写属于你的故事
+      </div>
+      <div class="qrcode reveal d3" id="qr">报名二维码<br>（此处放置）</div>
+      <div class="team reveal d4" style="color:rgba(255,255,255,.75)">
+        策划：王晨天 · 设计：赵浩轩 · 讲解：方禹桥<br>大连工业大学艺术与信息学院 · 新媒体小组
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- 侧边进度点 -->
+<div class="dots" id="dots"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+<script>
+/* ---------- 滚动入场动画 + 进度点 ---------- */
+const scenes=[...document.querySelectorAll('.scene')];
+const dots=[...document.querySelectorAll('.dots i')];
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.reveal').forEach(el=>el.classList.add('on'));
+      const idx=scenes.indexOf(e.target);
+      dots.forEach((d,i)=>d.classList.toggle('on',i===idx));
+    }
+  });
+},{threshold:.35});
+scenes.forEach(s=>io.observe(s));
+
+/* ---------- 彩蛋：花瓣 / 星光粒子 ---------- */
+const canvas=document.getElementById('fx');
+const ctx=canvas.getContext('2d');
+let W,H,parts=[];
+function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight;}
+addEventListener('resize',resize);resize();
+
+const COLORS=['#f4a25c','#e4573d','#f2c469','#7fa95c','#9ab8e8','#ffffff'];
+function burst(n,emoji){
+  for(let i=0;i<n;i++){
+    parts.push({
+      x:W/2+(Math.random()-.5)*W*.7,
+      y:H*.2+(Math.random()-.5)*40,
+      vx:(Math.random()-.5)*2.4,
+      vy:Math.random()*1.2+.3,
+      r:Math.random()*7+3,
+      c:COLORS[Math.floor(Math.random()*COLORS.length)],
+      life:1, e:emoji&&Math.random()<.18
+    });
+  }
+}
+function tick(){
+  ctx.clearRect(0,0,W,H);
+  parts=parts.filter(p=>p.life>0);
+  for(const p of parts){
+    p.x+=p.vx;p.y+=p.vy;p.vy+=.012;p.life-=.004;
+    ctx.globalAlpha=Math.max(0,p.life);
+    if(p.e){
+      ctx.font=p.r*4+'px sans-serif';ctx.fillText('✦',p.x,p.y);
+    }else{
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,7);ctx.fillStyle=p.c;ctx.fill();
+    }
+  }
+  ctx.globalAlpha=1;
+  requestAnimationFrame(tick);
+}
+tick();
+
+/* 首次进入即撒一次彩带，按钮再触发 */
+function celebrate(){
+  burst(120);
+  document.getElementById('qr').innerHTML='欢迎新同学 ♥<br>期待与你在校园相遇';
+  setTimeout(()=>burst(80),250);
+}
+addEventListener('load',()=>setTimeout(()=>burst(60),900));
+</script>
+</body>
+</html>
